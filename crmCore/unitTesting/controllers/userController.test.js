@@ -11,8 +11,8 @@
  *      - Negative scenarion
  */
 
- const { findAll } = require("../../controllers/user.controller");
- const User  = require("../../models/user.model");
+ const { findAll } = require("../../controllers/userControllers");
+ const User  = require("../../models/user_model");
  const {mockRequest, mockResponse} = require("../interceptor");
  
  
@@ -113,10 +113,11 @@
          req.query = {userStatus : "APPROVED"};
  
          await findAll(req, res);
+        //  console.log(res);
          expect(userSpy).toHaveBeenCalled();
          expect(res.status).toHaveBeenCalledWith(500);
          expect(res.send).toHaveBeenCalledWith({
-             message : "Internal server error"
+             message : "internal error happened"
          });
  
  
